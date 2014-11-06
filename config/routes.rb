@@ -1,6 +1,23 @@
 Rails.application.routes.draw do
+
+  get 'sessions/login'
+
+  get 'sessions/logout'
+
+  post 'sessions' => 'sessions#create'
+
   resources :posts
-  get 'posts' => 'posts#index', as: 'posts_path'
+  # GET	/posts	posts#index	display a list of all photos
+  # GET	/posts/new	posts#new	return an HTML form for creating a new photo
+  # POST	/posts	posts#create	create a new photo
+  # GET	/posts/:id	posts#show	display a specific photo
+  # GET	/posts/:id/edit	posts#edit	return an HTML form for editing a photo
+  # PATCH/PUT	/posts/:id	posts#update	update a specific photo
+  # DELETE	/posts/:id	posts#destroy	delete a specific photo
+  get 'registration' => 'users#new'#, as: 'registration'
+  post 'users' => 'users#create'
+  # get 'registration' => 'users#new', as: 'registration'
+
   # posts_path
   # post_path(:id)
   # new_post_path
@@ -12,7 +29,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
