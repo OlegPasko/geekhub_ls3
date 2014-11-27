@@ -40,3 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 
 gem 'quiet_assets'
+gem 'annotate'
+
+gem 'carrierwave'
+gem 'rmagick'

@@ -1,13 +1,22 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  after_action :update_views#, except: :index
+
   # GET /posts
   def index
     @posts = Post.all
+    # @name = params[:name]
+    # render json: {error: 'error_msg'}, status: :ok
   end
 
   # GET /posts/1
   def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @post.to_json }
+      format.html
+    end
   end
 
   # GET /posts/new
@@ -21,10 +30,11 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(params.require(:post).permit(:title, :body))
+    @post.user = User.first
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to posts_path, notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -53,6 +63,14 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :image)
+    end
+
+    def update_views
+      cookies[:views] = if cookies[:views].present?
+                          cookies[:views].to_i + 1
+                        else
+                          1
+                        end
     end
 end

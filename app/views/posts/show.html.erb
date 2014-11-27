@@ -5,6 +5,8 @@
   <%= @post.title %>
 </p>
 
+<%= image_tag @post.image_url if @post.image %>
+
 <p>
   <strong>Body:</strong>
   <%= @post.body %>

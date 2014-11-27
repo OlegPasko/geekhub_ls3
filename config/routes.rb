@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # PATCH/PUT	/posts/:id	posts#update	update a specific photo
   # DELETE	/posts/:id	posts#destroy	delete a specific photo
   get 'registration' => 'users#new'#, as: 'registration'
-  post 'users' => 'users#create'
+  # post 'users' => 'users#create'
   # get 'registration' => 'users#new', as: 'registration'
 
   # posts_path
