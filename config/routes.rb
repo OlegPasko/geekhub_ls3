@@ -6,7 +6,31 @@ Rails.application.routes.draw do
 
   post 'sessions' => 'sessions#create'
 
-  resources :posts
+  # resources :posts do
+  #   resources :comments
+  #   member do
+  #     post 'vote_up'
+  #     post 'vote_down'
+  #     get 'created'
+  #   end
+  #   collection do
+  #     get 'nulled_all'
+  #   end
+  # end
+  # resources :posts
+  # namespace :api do
+  #   resources :posts
+  # end
+
+  resources :posts, only: [:index, :show]
+  scope :admin do
+    resources :posts
+  end
+
+  # post '/posts/:id/vote_up' => 'posts#vote_up'
+
+  # get '/admin/posts/...' => 'posts#vote_up'
+
   # GET	/posts	posts#index	display a list of all photos
   # GET	/posts/new	posts#new	return an HTML form for creating a new photo
   # POST	/posts	posts#create	create a new photo
@@ -14,6 +38,7 @@ Rails.application.routes.draw do
   # GET	/posts/:id/edit	posts#edit	return an HTML form for editing a photo
   # PATCH/PUT	/posts/:id	posts#update	update a specific photo
   # DELETE	/posts/:id	posts#destroy	delete a specific photo
+
   get 'registration' => 'users#new'#, as: 'registration'
   # post 'users' => 'users#create'
   # get 'registration' => 'users#new', as: 'registration'

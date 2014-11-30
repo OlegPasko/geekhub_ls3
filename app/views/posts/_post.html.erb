@@ -1,0 +1,8 @@
+<tr>
+  <td><%= image_tag post.image_url(:thumb) if post.image %></td>
+  <td><%= post.title %></td>
+  <td><%= post.body %></td>
+  <td><%= link_to 'Show', post_path(post) %></td>
+  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Удалить?' } %></td>
+</tr>

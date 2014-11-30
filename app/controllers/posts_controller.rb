@@ -34,9 +34,9 @@ class PostsController < ApplicationController
     @post.user = User.first
 
     if @post.save
-      redirect_to posts_path, notice: 'Post was successfully created.'
+      #add post to table
     else
-      render :new
+      #some alert
     end
   end
 
